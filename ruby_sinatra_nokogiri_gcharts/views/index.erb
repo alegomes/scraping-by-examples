@@ -1,0 +1,43 @@
+<html>
+	<body>
+		
+		Número de mulheres
+		<ul>
+		 <li>N - <%= @women[:N] %></li>
+ 		 <li>NE - <%= @women[:NE] %></li>
+		 <li>S - <%= @women[:S] %></li>
+		 <li>SE - <%= @women[:SE] %></li>
+		 <li>CO - <%= @women[:CO] %></li>
+		</ul>
+		
+		Número de alfabetizados
+		<ul>
+		 <li>N - <%= @literates[:N] %></li>
+ 		 <li>NE - <%= @literates[:NE] %></li>
+		 <li>S - <%= @literates[:S] %></li>
+		 <li>SE - <%= @literates[:SE] %></li>
+		 <li>CO - <%= @literates[:CO] %></li>
+		</ul>
+		
+		<p/>
+		
+		<img src='<%= Gchart.bar(
+			:data => [ [@women[:N], 
+						@women[:NE], 
+						@women[:S], 
+						@women[:SE], 
+						@women[:CO]], 
+					   [@literates[:N], 
+						@literates[:NE], 
+						@literates[:S], 
+						@literates[:SE], 
+						@literates[:CO]]
+					 ], 
+			:bar_colors => ["4D89F9","008000"],
+			:stacked => false,
+			:size => "400x200",
+			:legend => ["Women", "Literates"],
+			:axis_with_labels => ['x'],
+			:axis_labels => ['N|NE|S|SE|CO']) %>' />
+	</body>
+</html>

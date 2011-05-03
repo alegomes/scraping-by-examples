@@ -1,0 +1,7 @@
+Prereqs
+
+sudo gem install sinatra googlecharts
+
+Run
+
+ruby -rubygems application.rb

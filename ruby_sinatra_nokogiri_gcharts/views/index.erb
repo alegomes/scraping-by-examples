@@ -1,37 +1,56 @@
 <html>
 	<body>
 		
-		Número de mulheres
-		<ul>
-		 <li>N - <%= @women[:N] %></li>
- 		 <li>NE - <%= @women[:NE] %></li>
-		 <li>S - <%= @women[:S] %></li>
-		 <li>SE - <%= @women[:SE] %></li>
-		 <li>CO - <%= @women[:CO] %></li>
-		</ul>
-		
-		Número de alfabetizados
-		<ul>
-		 <li>N - <%= @literates[:N] %></li>
- 		 <li>NE - <%= @literates[:NE] %></li>
-		 <li>S - <%= @literates[:S] %></li>
-		 <li>SE - <%= @literates[:SE] %></li>
-		 <li>CO - <%= @literates[:CO] %></li>
-		</ul>
+		<table border='1' align='center'>
+			<thead>
+				<tr>
+					<td>Região</td>
+					<td>Mulheres</td>
+					<td>Alfabetizados</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>N</td>
+					<td><%= '%.2d' % @women_ratio[:N] %> %</td>
+					<td><%= '%.2d' % @literates_ratio[:N] %> %</td>
+				</tr>
+				<tr>
+					<td>NE</td>
+					<td><%= '%.2d' % @women_ratio[:NE] %> %</td>
+					<td><%= '%.2d' % @literates_ratio[:NE] %> %</td>
+				</tr>
+				<tr>
+					<td>S</td>
+					<td><%= '%.2d' % @women_ratio[:S] %> %</td>
+					<td><%= '%.2d' % @literates_ratio[:SE] %> %</td>
+				</tr>
+				<tr>
+					<td>SE</td>
+					<td><%= '%.2d' % @women_ratio[:SE] %> %</td>
+					<td><%= '%.2d' % @literates_ratio[:SE] %> %</td>
+				</tr>
+				<tr>
+					<td>CO</td>
+					<td><%= '%.2d' % @women_ratio[:CO] %> %</td>
+					<td><%= '%.2d' % @literates_ratio[:CO] %> %</td>
+				</tr>
+			</tbody>
+		</table>
 		
 		<p/>
 		
 		<img src='<%= Gchart.bar(
-			:data => [ [@women[:N], 
-						@women[:NE], 
-						@women[:S], 
-						@women[:SE], 
-						@women[:CO]], 
-					   [@literates[:N], 
-						@literates[:NE], 
-						@literates[:S], 
-						@literates[:SE], 
-						@literates[:CO]]
+			:data => [ [@women_ratio[:N], 
+						@women_ratio[:NE], 
+						@women_ratio[:S], 
+						@women_ratio[:SE], 
+						@women_ratio[:CO]], 
+					   [@literates_ratio[:N], 
+						@literates_ratio[:NE], 
+						@literates_ratio[:S], 
+						@literates_ratio[:SE], 
+						@literates_ratio[:CO]]
 					 ], 
 			:bar_colors => ["4D89F9","008000"],
 			:stacked => false,

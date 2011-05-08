@@ -35,6 +35,32 @@ var IBGECenso2010SexRatio = {
 	
 	men_per_region: function() {
 		return get_census_values(this,4,7,10,13,16);
+	},
+	
+	population_per_region: function() {
+		women = this.women_per_region();
+		men = this.men_per_region();
+		
+	 	return {
+			"N": women["N"] + men["N"],
+			"NE": women["NE"] + men["NE"],
+			"SE": women["SE"] + men["SE"],
+			"S": women["S"] + men["S"],
+			"CO": women["CO"] + men["CO"]
+		}
+	},
+	
+	women_ratio_per_region: function() {
+		women = this.women_per_region();
+		population = this.population_per_region();
+		
+		return {
+			"N" : women["N"]/population["N"],
+			"NE" : women["NE"]/population["NE"],
+			"SE" : women["SE"]/population["SE"],
+			"S" : women["S"]/population["S"],
+			"CO" : women["CO"]/population["CO"],
+		}
 	}
 }
 
@@ -69,10 +95,10 @@ get_census_values = function(page,n,ne,se,s,co) {
 	var in_co = numbers[co].match(td_numbers_local)[1].replace(/\./g, '');
 
 	return {
-		"N"  : in_n,
-		"NE" : in_ne,
-		"SE" : in_se,
-		"S"	 : in_s,
-		"CO" : in_co
+		"N"  : parseInt(in_n),
+		"NE" : parseInt(in_ne),
+		"SE" : parseInt(in_se),
+		"S"	 : parseInt(in_s),
+		"CO" : parseInt(in_co)
 	}
 }

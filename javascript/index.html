@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<script src="lib/ibge_censo_2010.js"></script>
+		<script>
+			function load() {
+				document.getElementById('chart').src = generateChart();
+			}
+		
+			function generateChart() {
+				
+				var sex_ratio = IBGECenso2010.sex_ratio();
+				var literacy = IBGECenso2010.literacy();
+				
+				women_ratio = sex_ratio.women_ratio_per_region();
+				literates_ratio = literacy.literates_ratio_per_region();
+				
+				var data = 	parseInt(women_ratio["N"]*100) + "," +
+							parseInt(women_ratio["NE"]*100) + "," +
+							parseInt(women_ratio["SE"]*100) + "," +
+							parseInt(women_ratio["S"]*100) + "," +
+							parseInt(women_ratio["CO"]*100) + "|" + 
+							parseInt(literates_ratio["N"]*100) + "," + 
+							parseInt(literates_ratio["NE"]*100) + "," + 
+							parseInt(literates_ratio["SE"]*100) + "," + 
+							parseInt(literates_ratio["S"]*100) + "," + 
+							parseInt(literates_ratio["CO"]*100); 
+				
+				var googlechart = "http://chart.apis.google.com/chart" +
+								"?chxt=y" + 
+								"&chbh=a" + 
+								"&chs=500x300" + 
+								"&cht=bvg" +  
+								"&chco=A2C180,3D7930" +
+								"&chd=t:" + data + 
+								"&chdl=Women|Literates" + 
+								"&chp=0.033"
+
+				return  googlechart;
+			}
+		</script>
+	</head>
+
+	<body onload="load()">
+		<img id="chart" src="#" />
+	</body>
+
+</html>

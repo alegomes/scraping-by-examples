@@ -78,6 +78,19 @@ var IBGECenso2010LiteratesRatio = {
 	
 	not_children_per_region: function() {
 		return get_census_values(this,6,12,18,24,30);
+	},
+	
+	literates_ratio_per_region: function() {
+		literates = this.literates_per_region();
+		not_children = this.not_children_per_region();
+		
+		return {
+			"N" : literates["N"]/not_children["N"],
+			"NE" : literates["NE"]/not_children["NE"],
+			"SE" : literates["SE"]/not_children["SE"],
+			"S" : literates["S"]/not_children["S"],
+			"CO" : literates["CO"]/not_children["CO"]
+		}
 	}
 	
 }

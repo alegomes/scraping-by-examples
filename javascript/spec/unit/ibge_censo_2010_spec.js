@@ -87,5 +87,17 @@ describe 'IBGECenso2010'
 			population["CO"].should.eql 11870062
 		end
 		
+		it 'should get literates ratio' 
+		
+			literates = literacy.literates_per_region()
+			population = literacy.not_children_per_region()
+			
+			literates_ratio = literacy.literates_ratio_per_region()
+			literates_ratio["N"].should.eql literates["N"]/population["N"]
+			literates_ratio["NE"].should.eql literates["NE"]/population["NE"]
+			literates_ratio["SE"].should.eql literates["SE"]/population["SE"]
+			literates_ratio["S"].should.eql literates["S"]/population["S"]
+			literates_ratio["CO"].should.eql literates["CO"]/population["CO"]
+		end
 	end
 end
